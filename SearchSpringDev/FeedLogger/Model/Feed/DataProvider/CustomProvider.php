@@ -27,8 +27,9 @@ class CustomProvider implements DataProviderInterface
      */
     public function __construct(
         LoggerInterface $logger,
-        MetadataPool $metadataPool
-    ) {
+        MetadataPool    $metadataPool
+    )
+    {
         $this->logger = $logger;
         $this->metadataPool = $metadataPool;
     }
@@ -56,12 +57,16 @@ class CustomProvider implements DataProviderInterface
             $productModel = $product['product_model'] ?? null;
             $this->logger->info('ProductsDataStart', ['product' => $product]);
             if (!$productModel) {
-                $this->logger->info('ProductIdWhenModelNotAvailable: ' . $productKeyIndex);
-                $this->logger->info('ProductsDataModelNotFound', ['product' => $product]);
+                $this->logger->info('ProductIdWhenModelNotAvailable: ' . $productKeyIndex, ['method' => __METHOD__,]);
+                $this->logger->info('ProductsDataModelNotFound', ['product' => $product, 'method' => __METHOD__,]);
                 continue;
             }
             $id = $productModel->getData($this->getLinkField());
-            $this->logger->info('ProductIdAvailable: ' . $id);
+            $this->logger->info('ProductIdAvailable: ' . $id,
+                [
+                    'method' => __METHOD__,
+                ]
+            );
             $this->logger->info('ProductsDataEnd', ['product' => $product]);
         }
         $this->logger->info(

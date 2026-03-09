@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/searchspring/productinfo" method="GET">
+        <service class="SearchSpringDev\FeedLogger\Api\ProductInfoInterface" method="getInfo" />
+        <resources>
+            <resource ref="SearchSpring_Feed::general" />
+        </resources>
+    </route>
+    <route url="/V1/searchspring/feedlogger" method="GET">
+        <service class="SearchSpringDev\FeedLogger\Api\GetFeedLoggerInterface" method="get" />
+        <resources>
+            <resource ref="SearchSpring_Feed::general" />
+        </resources>
+    </route>
+    <route url="/V1/searchspring/feedlogger/clear" method="POST">
+        <service class="SearchSpringDev\FeedLogger\Api\GetFeedLoggerInterface" method="clear" />
+        <resources>
+            <resource ref="SearchSpring_Feed::general" />
+        </resources>
+    </route>
+</routes>

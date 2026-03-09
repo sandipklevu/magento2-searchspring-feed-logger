@@ -2,11 +2,19 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
+    <preference for="SearchSpringDev\FeedLogger\Api\Data\ProductInfoResponseInterface"
+                type="SearchSpringDev\FeedLogger\Model\Data\ProductInfoResponse"/>
+    <preference for="SearchSpringDev\FeedLogger\Api\ProductInfoInterface"
+                type="SearchSpringDev\FeedLogger\Model\Api\ProductInfo"/>
+    <preference for="SearchSpringDev\FeedLogger\Api\GetFeedLoggerInterface"
+                type="SearchSpringDev\FeedLogger\Model\Api\GetFeedLogger"/>
+
     <virtualType name="SearchSpringFeedGenerateFeedAfterLoadCollectionProcessorPool"
                  type="SearchSpring\Feed\Model\Feed\Collection\ProcessorPool">
         <arguments>
             <argument name="processors" xsi:type="array">
-                <item name="custom" xsi:type="object">SearchSpringDev\FeedLogger\Model\Feed\Collection\CustomProcessor</item>
+                <item name="custom" xsi:type="object">SearchSpringDev\FeedLogger\Model\Feed\Collection\CustomProcessor
+                </item>
             </argument>
         </arguments>
     </virtualType>
@@ -14,7 +22,9 @@
     <type name="SearchSpring\Feed\Model\Feed\DataProviderPool">
         <arguments>
             <argument name="dataProviders" xsi:type="array">
-                <item name="custom_provider" xsi:type="object">SearchSpringDev\FeedLogger\Model\Feed\DataProvider\CustomProvider</item>
+                <item name="custom_provider" xsi:type="object">
+                    SearchSpringDev\FeedLogger\Model\Feed\DataProvider\CustomProvider
+                </item>
             </argument>
         </arguments>
     </type>
@@ -43,13 +53,13 @@
     <type name="SearchSpring\Feed\Model\Feed\StorageInterface">
         <plugin name="SearchSpringCustomStoragePluginForFeedLogger"
                 type="SearchSpringDev\FeedLogger\Plugin\Feed\StorageAddDataLoggerPlugin"
-                sortOrder="10" />
+                sortOrder="10"/>
     </type>
 
     <type name="SearchSpring\Feed\Model\Feed\CollectionProviderInterface">
         <plugin name="SearchSpringCustomCollectionProviderPluginForFeedLogger"
                 type="SearchSpringDev\FeedLogger\Plugin\Feed\CollectionProviderLoggerPlugin"
-                sortOrder="10" />
+                sortOrder="10"/>
     </type>
 
     <type name="SearchSpringDev\FeedLogger\Model\Feed\DataProvider\CustomProvider">
@@ -73,4 +83,11 @@
             <argument name="logger" xsi:type="object">SearchSpringAdvancedFeedLogger</argument>
         </arguments>
     </type>
+    <type name="SearchSpringDev\FeedLogger\Model\Api\ProductInfo">
+        <arguments>
+            <argument name="logger" xsi:type="object">SearchSpringAdvancedFeedLogger</argument>
+        </arguments>
+    </type>
+
+
 </config>
