@@ -78,16 +78,18 @@ Step: 4 check the task status in `searchspring_task` table, it should be `succes
 SELECT * FROM `searchspring_task` ORDER BY `entity_id` DESC LIMIT 1;
 ```
 
-Step: 4 Feed will be generated in the `<magento-root>/var/searchspring/` directory.
+Step: 5 Feed will be generated in the `<magento-root>/var/searchspring/` directory.
 
-Step: 5 Check the log(s) file for the output of the feed generation and deletion process.
+Step: 6 Please share the below two files in compressed format which will help to analyze the issue:
  - There will be two log files generated in `<magento-root>/var/log/` directory:
    1. `searchspring_feed.log` - Main module log file
-   2. `searchspringdev_logger.log` - SQL queries and product info related data for all the data. This file may have large.
+   2. `searchspringdev_logger.log` - SQL queries and product info related data for all the data. 
+   This file may have large data depending on catalog size.
 
 You can refer the SQL queries and product info related data in `searchspringdev_logger.log` file. 
 This file may have large data, so you can compress it before sharing with the SearchSpring team for further analysis. 
 
 ### Refer the log file generated in `<magento-root>/var/log/searchspringdev_logger.log`.
+
 
 
